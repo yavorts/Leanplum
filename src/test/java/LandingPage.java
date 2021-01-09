@@ -5,9 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utils.BaseTest;
 
-public class LandingPage extends  BaseTest{
-    WebDriver driver;
+public class LandingPage extends BaseTest {
+   public WebDriver driver;
 
 
     @BeforeTest
@@ -33,7 +34,7 @@ public class LandingPage extends  BaseTest{
 
 
         // Verify title.
-       Assert.assertTrue(title.contains("Login to Leanplum"));
+       Assert.assertTrue(title.contains("Login to 1Leanplum"));
 
 
 

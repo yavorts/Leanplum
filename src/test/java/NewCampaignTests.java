@@ -3,8 +3,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utils.BaseTest;
 
-public class NewCampaignTests extends  BaseTest{
+public class NewCampaignTests extends BaseTest {
         WebDriver driver;
 
 
