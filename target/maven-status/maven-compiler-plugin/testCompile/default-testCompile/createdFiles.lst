@@ -1,3 +1,5 @@
 LandingPage.class
-BaseTest.class
+testUtils\ListenersUtil.class
+testUtils\BaseTest.class
+testUtils\ReportsUtil.class
 NewCampaignTests.class

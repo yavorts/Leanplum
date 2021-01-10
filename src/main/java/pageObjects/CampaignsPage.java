@@ -9,12 +9,12 @@ import utils.WebElementUtils;
 
 import java.util.List;
 
-public class CampaignPage {
+public class CampaignsPage {
     WebDriver driver;
     @FindBy(css = ".new-campaign")
     private WebElement newCampaignButton;
 
-    public CampaignPage(WebDriver driver) {
+    public CampaignsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         WaitUtils.waitForDocumentReadyState(driver);
@@ -22,6 +22,7 @@ public class CampaignPage {
 
     public void clickNewCampaignButton() {
         WaitUtils.waitForVisibleElement(newCampaignButton, driver);
+        WaitUtils.waitForClickableElement(newCampaignButton,driver);
         newCampaignButton.click();
     }
 }
