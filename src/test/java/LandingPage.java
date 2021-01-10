@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageObjects.LoginPage;
 import pageObjects.SideNavigationMenu;
@@ -25,12 +26,18 @@ public class LandingPage extends BaseTest {
         log.info("Get to Leanplum url");
     }
 
-    @Test
-    public void verifyUserCanLogin() {
+    @DataProvider(name = "data-provider")
+    public Object[][] dpMethod() {
+        return new Object[][]{{"tsanov.y@gmail.com", "vitorbelfort4"}};
+    }
+
+
+    @Test(dataProvider = "data-provider")
+    public void verifyUserCanLogin(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.setEmail("tsanov.y@gmail.com");
+        loginPage.setEmail(email);
         log.info("Enter email to log in");
-        loginPage.setPassword("vitorbelfort4");
+        loginPage.setPassword(password);
         log.info("Enter password");
         loginPage.setRememberState(true);
         log.info("Checked the remember me");

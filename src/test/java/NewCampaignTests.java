@@ -25,8 +25,6 @@ public class NewCampaignTests extends BaseTest {
     @Test
     public void verifyFlowCampaignToFinish() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
-        Assert.assertTrue(driver.getTitle().equals("Login to Leanplum"),
-                "User is not on Leanplum log in page");
         loginPage.setEmail("tsanov.y@gmail.com");
         log.info("Enter email to log in");
         loginPage.setPassword("vitorbelfort4");
