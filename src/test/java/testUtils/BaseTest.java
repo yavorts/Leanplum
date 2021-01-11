@@ -6,6 +6,9 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,12 +42,12 @@ public class BaseTest {
 
         if(browserName.equals("firefox")){
             WebDriverManager.firefoxdriver().setup();
-            driver = new ChromeDriver();
+            driver = new FirefoxDriver();
         }
 
         if(browserName.equals("ie")){
             WebDriverManager.edgedriver().setup();
-            driver = new ChromeDriver();
+            driver = new EdgeDriver();
         }
         driver.manage().window().maximize();
         return driver;
