@@ -7,6 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import utils.WaitUtils;
 import utils.WebElementUtils;
 
+/**
+ * Login Page Object class representing the log in page
+ * @author yavort
+ */
 public class LoginPage {
     WebDriver driver;
     @FindBy(css = "input[placeholder=Email]")

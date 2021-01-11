@@ -9,6 +9,10 @@ import utils.WebElementUtils;
 
 import java.util.List;
 
+/**
+ * Page Object class for the settings of the campaign
+ * @author yavort
+ */
 public class CampaignSettingsPage {
     WebDriver driver;
 
@@ -18,18 +22,30 @@ public class CampaignSettingsPage {
     @FindBy(css = ".content .controls span")
     private List<WebElement> campaignControls;
 
+    /**
+     * The constructor of the CampaignSettingsPage class
+     * @param driver The WebDriver instance
+     */
     public CampaignSettingsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         WaitUtils.waitForDocumentReadyState(driver);
     }
 
+    /**
+     * Method to set the campaign name
+     * @param name The name of the campaign
+     */
     public void setCampaignName(String name) {
         WaitUtils.waitForVisibleElement(campaignName, driver);
         campaignName.clear();
         campaignName.sendKeys(name);
     }
 
+    /**
+     * Method to choose save or cancel on the control options options
+     * @param controlOption The control option should be save or cancel
+     */
     public void selectSaveOrCancel(String controlOption) {
         WebElement element = WebElementUtils.getElementWithTextFromListOfElements
                 (controlOption, campaignControls);

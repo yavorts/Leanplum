@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Class containing utility methods for selenium waiting
- * @author russ huber
+ * @author yavort
  */
 public final class WaitUtils {
 

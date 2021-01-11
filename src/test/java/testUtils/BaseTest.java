@@ -14,11 +14,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
-
+/**
+ * Base class for Testing containing the common methods for preparation
+ * of the environment, url, broswer, screenshots
+ * @author yavort
+ */
 public class BaseTest {
    protected WebDriver driver;
     Properties properties = new Properties();
 
+    /**
+     * Method for getting the browser specified in the
+     * properties file and then initializing it
+     * @return returns the instance of the webDriver
+     */
     public WebDriver initializeDriver(){
         this.loadPropertiesfile();
         String browserName =  properties.getProperty("browser");
@@ -41,6 +50,9 @@ public class BaseTest {
         return driver;
     }
 
+    /**
+     * Method to load the properties configuration file
+     */
     public void loadPropertiesfile() {
         FileInputStream inputStream = null;
         try {
@@ -55,6 +67,11 @@ public class BaseTest {
         }
     }
 
+    /**
+     * Method to extract and combine the different parts of the url
+     * like environment, baseUrl, etc
+     * @return returns the result of combining the url as a string
+     */
     public String getUrlFromProperies(){
         this.loadPropertiesfile();
         String urlResult = properties.getProperty("urlPrefix") + properties.getProperty("environment")
@@ -62,6 +79,13 @@ public class BaseTest {
         return urlResult;
     }
 
+    /**
+     * Method to get the path for storing the reports and screenshots
+     * @param testCaseName the name of the executed testcase to store
+     * @param driver the instance of the webDriver
+     * @return return the path as a string
+     * @throws IOException
+     */
     public String getScreenshotPath(String testCaseName, WebDriver driver) throws IOException {
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
         File source = takesScreenshot.getScreenshotAs(OutputType.FILE);

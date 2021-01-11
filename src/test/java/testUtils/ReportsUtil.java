@@ -3,7 +3,9 @@ package testUtils;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-
+/**
+ * Class for creating directories for setting and storing reports
+ */
 public class ReportsUtil {
     static ExtentReports extentReports;
 

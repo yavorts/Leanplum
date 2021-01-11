@@ -9,24 +9,37 @@ import org.testng.ITestResult;
 
 import java.io.IOException;
 
-
+/**
+ * Utility class for preparing listeners how to react after
+ * test execution
+ */
 public class ListenersUtil extends BaseTest implements ITestListener {
     ExtentTest test;
     ExtentReports extent = ReportsUtil.setReports();
     private static ThreadLocal<ExtentTest> threadExtent = new ThreadLocal<ExtentTest>();
 
+    /**
+     * Method to report the start of test execution
+     * @param result the test result object instance containing test name etc
+     */
     public void onTestStart(ITestResult result) {
         test = extent.createTest(result.getMethod().getMethodName());
         threadExtent.set(test);
     }
 
-
+    /**
+     * Method to reprt test success in reports
+     * @param result the test result object instance containing test name, status, etc
+     */
     public void onTestSuccess(ITestResult result) {
         test = threadExtent.get().pass(String.valueOf(result.getStatus()));
 
     }
 
-
+    /**
+     * Method to reprt test failure and capture screenshots in reports
+     * @param result the test result object instance containing test name, status, etc
+     */
     public void onTestFailure(ITestResult result) {
         WebDriver driver = null;
         Object testObject = result.getInstance();
@@ -65,7 +78,10 @@ public class ListenersUtil extends BaseTest implements ITestListener {
 
     }
 
-
+    /**
+     * Flush test results when all test execution is finished
+     * @param context
+     */
     public void onFinish(ITestContext context) {
         extent.flush();
     }
