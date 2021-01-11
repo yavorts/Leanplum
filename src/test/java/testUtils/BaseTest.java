@@ -39,31 +39,49 @@ public class BaseTest {
      */
     public WebDriver initializeDriver() throws MalformedURLException {
         this.loadPropertiesfile();
+        String grid = properties.getProperty("grid");
         String browserName =  properties.getProperty("browser");
 
-        if(browserName.equals("chrome")){
-            WebDriverManager.chromedriver().setup();
+    if (browserName.equals("chrome")) {
+        WebDriverManager.chromedriver().setup();
+        if(grid.equals("false")){
+            driver = new ChromeDriver();
+        }
+        else {
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setBrowserName("chrome");
             desiredCapabilities.setPlatform(Platform.WINDOWS);
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }
+    }
 
-        if(browserName.equals("firefox")){
-            WebDriverManager.firefoxdriver().setup();
+    if (browserName.equals("firefox")) {
+        WebDriverManager.firefoxdriver().setup();
+        if(grid.equals("false")){
+            driver = new FirefoxDriver();
+        }
+        else {
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setBrowserName("firefox");
             desiredCapabilities.setPlatform(Platform.WINDOWS);
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }
+    }
 
-        if(browserName.equals("ie")){
-            WebDriverManager.edgedriver().setup();
+    if (browserName.equals("ie")) {
+        WebDriverManager.edgedriver().setup();
+        if(grid.equals("false")){
+            driver = new EdgeDriver();
+        }
+        else {
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setBrowserName("edge");
             desiredCapabilities.setPlatform(Platform.WINDOWS);
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }
+    }
+
+
         driver.manage().window().maximize();
         return driver;
     }
