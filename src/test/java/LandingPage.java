@@ -13,13 +13,15 @@ import pageObjects.SideNavigationMenu;
 import testUtils.BaseTest;
 import utils.WaitUtils;
 
+import java.net.MalformedURLException;
+
 public class LandingPage extends BaseTest {
     public WebDriver driver;
     static Logger log = LogManager.getLogger(LandingPage.class.getName());
 
 
     @BeforeTest
-    public void setupTest() {
+    public void setupTest() throws MalformedURLException {
         driver = initializeDriver();
         log.info("Driver is initialized");
         driver.get(getUrlFromProperies());

@@ -8,13 +8,15 @@ import org.testng.annotations.Test;
 import pageObjects.*;
 import testUtils.BaseTest;
 
+import java.net.MalformedURLException;
+
 public class NewCampaignTests extends BaseTest {
     WebDriver driver;
     static Logger log = LogManager.getLogger(NewCampaignTests.class.getName());
 
 
     @BeforeTest
-    public void setupTest() {
+    public void setupTest() throws MalformedURLException {
         //init Driver
         driver = initializeDriver();
         //Get to the Leanplum url

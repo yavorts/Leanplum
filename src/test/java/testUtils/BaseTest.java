@@ -3,16 +3,21 @@ package testUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
@@ -23,7 +28,8 @@ import java.util.Properties;
  * @author yavort
  */
 public class BaseTest {
-   protected WebDriver driver;
+  //protected WebDriver driver;
+   protected RemoteWebDriver driver;
     Properties properties = new Properties();
 
     /**
@@ -31,23 +37,32 @@ public class BaseTest {
      * properties file and then initializing it
      * @return returns the instance of the webDriver
      */
-    public WebDriver initializeDriver(){
+    public WebDriver initializeDriver() throws MalformedURLException {
         this.loadPropertiesfile();
         String browserName =  properties.getProperty("browser");
 
         if(browserName.equals("chrome")){
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+            desiredCapabilities.setBrowserName("chrome");
+            desiredCapabilities.setPlatform(Platform.WINDOWS);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }
 
         if(browserName.equals("firefox")){
             WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+            desiredCapabilities.setBrowserName("firefox");
+            desiredCapabilities.setPlatform(Platform.WINDOWS);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }
 
         if(browserName.equals("ie")){
             WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
+            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+            desiredCapabilities.setBrowserName("edge");
+            desiredCapabilities.setPlatform(Platform.WINDOWS);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }
         driver.manage().window().maximize();
         return driver;
